@@ -3,6 +3,7 @@
   "displayName": "platformio_big_buttons",
   "description": "",
   "version": "1.0.0",
+  "publisher": "SeryiBaran",
   "repository": {
     "url": "https://github.com/SeryiBaran/platformio-big-buttons"
   },

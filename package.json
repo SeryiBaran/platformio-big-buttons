@@ -1,8 +1,8 @@
 {
   "name": "platformio-big-buttons",
-  "displayName": "platformio_big_buttons",
+  "displayName": "PlatformIO Big Buttons",
   "description": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "SeryiBaran",
   "repository": {
     "url": "https://github.com/SeryiBaran/platformio-big-buttons"

@@ -1,7 +1,7 @@
 # PlatformIO Big Buttons
 
-Скриншот:
+Screenshot:
 
-![Скриншот](./readme_assets/screenshot.png)
+![Screenshot](./readme_assets/screenshot.png)
 
-VSCode расширение добавляющее большие кнопки для сборки, загрузки проекта и т.д. в PlatformIO.
+VSCode extension that adds large buttons for building, uploading, etc. for PlatformIO.

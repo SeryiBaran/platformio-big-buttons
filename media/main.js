@@ -4,6 +4,7 @@
     { id: "build", name: "Build" },
     { id: "upload", name: "Upload" },
     { id: "serial_monitor", name: "Open Serial monitor" },
+    { id: "upload_and_serial_monitor", name: "Upload & Open Serial monitor" },
   ];
   const buttons_container = document.getElementById("buttons_container");
 

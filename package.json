@@ -2,7 +2,7 @@
   "name": "platformio-big-buttons",
   "displayName": "PlatformIO Big Buttons",
   "description": "VSCode extension that adds large buttons for building, uploading, etc. for PlatformIO.",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "publisher": "SeryiBaran",
   "repository": {
     "url": "https://github.com/SeryiBaran/platformio-big-buttons"

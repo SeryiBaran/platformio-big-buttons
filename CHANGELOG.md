@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
-## [1.1.3] - 2023-12-15
+## [1.1.4] - 2023-12-15
 
 ### Fixed
 
-- Fixed css link
+- Fixed buttons css
 
 ## [1.1.2] - 2023-12-15
 

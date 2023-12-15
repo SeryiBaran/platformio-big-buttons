@@ -55,9 +55,6 @@ class ButtonsViewProvider implements vscode.WebviewViewProvider {
 
   private _getHtmlForWebview(webview: vscode.Webview) {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
-    const webwiewUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'webview'),
-    )
     const webwiewJSUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, 'out', 'webview.js'),
     )
@@ -68,12 +65,23 @@ class ButtonsViewProvider implements vscode.WebviewViewProvider {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PlatformIO Big Buttons</title>
-        <link rel="stylesheet" href="${webwiewUri}/gardevoir.css" />
-        <link rel="stylesheet" href="${webwiewUri}/main.css" />
       </head>
       <body>
         <div id="buttons_container"></div>
         <script type="module" src="${webwiewJSUri}"></script>
+        <style>
+          #buttons_container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 8px;
+            width: 100%;
+            max-width: 600px;
+          }
+    
+          .button {
+            min-height: 100px;
+          }
+        </style>
       </body>
     </html>`
   }

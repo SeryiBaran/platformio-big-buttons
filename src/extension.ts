@@ -55,14 +55,8 @@ class ButtonsViewProvider implements vscode.WebviewViewProvider {
 
   private _getHtmlForWebview(webview: vscode.Webview) {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
-    const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'),
-    )
-    const styleResetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'gardevoir.css'),
-    )
-    const styleMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'),
+    const mediaUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, 'media'),
     )
 
     return `<!DOCTYPE html>
@@ -71,12 +65,13 @@ class ButtonsViewProvider implements vscode.WebviewViewProvider {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PlatformIO Big Buttons</title>
-        <link rel="stylesheet" href="${styleResetUri}" />
-        <link rel="stylesheet" href="${styleMainUri}" />
+        <link rel="stylesheet" href="${mediaUri}/gardevoir.css" />
+        <link rel="stylesheet" href="${mediaUri}/vscode.css" />
+        <link rel="stylesheet" href="${mediaUri}/main.css" />
       </head>
       <body>
         <div id="buttons_container"></div>
-        <script src="${scriptUri}"></script>
+        <script src="${mediaUri}/main.js"></script>
       </body>
     </html>`
   }

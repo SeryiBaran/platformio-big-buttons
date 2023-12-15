@@ -4,7 +4,6 @@
   "description": "VSCode extension that adds large buttons for building, uploading, etc. for PlatformIO.",
   "version": "1.0.3",
   "publisher": "SeryiBaran",
-  "type": "module",
   "repository": {
     "url": "https://github.com/SeryiBaran/platformio-big-buttons"
   },
@@ -32,7 +31,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
-    "lint": "eslint src --ext ts",
+    "lint": "ESLINT_USE_FLAT_CONFIG=trueeslint src --ext ts -c eslint.config.mjs",
     "test": "vscode-test"
   },
   "devDependencies": {

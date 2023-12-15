@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [1.1.2] - 2023-12-15
+
+### Added
+
+- Add esbuild
+
+### Changed
+
+- Switch from CSS to [vscode-webview-ui-toolkit](https://github.com/microsoft/vscode-webview-ui-toolkit)
+
 ## [1.1.1] - 2023-12-15
 
 ### Changed

@@ -1,5 +1,12 @@
-(function () {
-  const vscode = acquireVsCodeApi()
+import { provideVSCodeDesignSystem, vsCodeButton } from '@vscode/webview-ui-toolkit'
+
+provideVSCodeDesignSystem().register(vsCodeButton())
+
+const vscode = acquireVsCodeApi()
+
+window.addEventListener('load', main)
+
+function main() {
   const buttons_data = [
     { id: 'build', name: 'Build' },
     { id: 'upload', name: 'Upload' },
@@ -9,7 +16,7 @@
   const buttons_container = document.getElementById('buttons_container')
 
   buttons_data.forEach((button_data) => {
-    const new_button = document.createElement('button')
+    const new_button = document.createElement('vscode-button')
     new_button.className = 'button'
     new_button.id = button_data.id
     new_button.textContent = button_data.name
@@ -19,6 +26,7 @@
       })
     })
 
-    buttons_container.appendChild(new_button)
+    if (buttons_container)
+      buttons_container.appendChild(new_button)
   })
-})()
+}

@@ -1,20 +1,20 @@
 {
+  "publisher": "SeryiBaran",
   "name": "platformio-big-buttons",
   "displayName": "PlatformIO Big Buttons",
+  "version": "1.1.5",
   "description": "VSCode extension that adds large buttons for building, uploading, etc. for PlatformIO.",
-  "version": "1.1.4",
-  "publisher": "SeryiBaran",
   "repository": {
     "url": "https://github.com/SeryiBaran/platformio-big-buttons"
-  },
-  "engines": {
-    "vscode": "^1.85.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [],
   "contributes": {
     "views": {
       "explorer": [
@@ -31,7 +31,10 @@
     "compile": "node ./esbuild.js",
     "package": "cross-env NODE_ENV=production node ./esbuild.js",
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts -c eslint.config.mjs",
-    "watch": "node ./esbuild.js --watch"
+    "watch": "node ./esbuild.js"
+  },
+  "dependencies": {
+    "@vscode/webview-ui-toolkit": "^1.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
@@ -46,8 +49,5 @@
     "eslint": "^8.55.0",
     "prettier": "^3.1.1",
     "typescript": "^5.3.2"
-  },
-  "dependencies": {
-    "@vscode/webview-ui-toolkit": "^1.4.0"
   }
 }

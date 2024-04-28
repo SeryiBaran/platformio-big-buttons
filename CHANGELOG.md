@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [1.1.5] - 2024-04-28
+
+### Changed
+
+- buttons now created from array, not hard-coded
+
 ## [1.1.4] - 2023-12-15
 
 ### Fixed

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { buttonsData } from './buttons'
 
 export function activate(context: vscode.ExtensionContext) {
   const provider = new ButtonsViewProvider(context.extensionUri)
@@ -35,21 +36,10 @@ class ButtonsViewProvider implements vscode.WebviewViewProvider {
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview)
 
     webviewView.webview.onDidReceiveMessage(async (message) => {
-      switch (message.command) {
-        case 'build':
-          await vscode.commands.executeCommand('platformio-ide.build')
-          return
-        case 'upload':
-          await vscode.commands.executeCommand('platformio-ide.upload')
-          return
-        case 'serial_monitor':
-          await vscode.commands.executeCommand('platformio-ide.serialMonitor')
-          return
-        case 'upload_and_serial_monitor':
-          await vscode.commands.executeCommand(
-            'platformio-ide.uploadAndMonitor',
-          )
-      }
+      buttonsData.forEach(async (buttonData) => {
+        if (message.command === buttonData.id)
+          await vscode.commands.executeCommand(buttonData.platformioCommand)
+      })
     })
   }
 

@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
+## [1.2.0] - 2025-02-22
+
+### Changed
+
+- rewritten code
+- icons
+
 ## [1.1.5] - 2024-04-28
 
 ### Changed

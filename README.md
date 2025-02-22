@@ -2,6 +2,6 @@
 
 Screenshot:
 
-![Screenshot](./readme_assets/screenshot.png)
+![Screenshot](./readme_assets/screenshot.jpg)
 
 VSCode extension that adds large buttons for building, uploading, etc. for PlatformIO.

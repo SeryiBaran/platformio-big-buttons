@@ -1,64 +1,54 @@
-const process = require('node:process')
-const { build } = require('esbuild')
+const esbuild = require('esbuild');
 
-const baseConfig = {
-  bundle: true,
-  minify: process.env.NODE_ENV === 'production',
-  sourcemap: process.env.NODE_ENV !== 'production',
-}
+const production = process.argv.includes('--production');
+const watch = process.argv.includes('--watch');
 
-const extensionConfig = {
-  ...baseConfig,
-  platform: 'node',
-  mainFields: ['module', 'main'],
-  format: 'cjs',
-  entryPoints: ['./src/extension.ts'],
-  outfile: './out/extension.js',
-  external: ['vscode'],
-}
+/**
+ * @type {import('esbuild').Plugin}
+ */
+const esbuildProblemMatcherPlugin = {
+  name: 'esbuild-problem-matcher',
 
-const watchConfig = {
-  watch: {
-    onRebuild(error, _result) {
-      if (error) {
-        error.errors.forEach(error =>
-          console.error(`> ${error.location.file}:${error.location.line}:${error.location.column}: error: ${error.text}`),
-        )
-      }
-    },
+  setup(build) {
+    build.onStart(() => {
+      console.log('[watch] build started');
+    });
+    build.onEnd((result) => {
+      result.errors.forEach(({ text, location }) => {
+        console.error(`✘ [ERROR] ${text}`);
+        console.error(`    ${location.file}:${location.line}:${location.column}:`);
+      });
+      console.log('[watch] build finished');
+    });
   },
-}
-
-const webviewConfig = {
-  ...baseConfig,
-  target: 'es2020',
-  format: 'esm',
-  entryPoints: ['./src/webview/main.mts'],
-  outfile: './out/webview.js',
 };
 
-(async () => {
-  const args = process.argv.slice(2)
-  try {
-    if (args.includes('--watch')) {
-      // Build and watch extension and webview code
-      await build({
-        ...extensionConfig,
-        ...watchConfig,
-      })
-      await build({
-        ...webviewConfig,
-        ...watchConfig,
-      })
-    }
-    else {
-      // Build extension and webview code
-      await build(extensionConfig)
-      await build(webviewConfig)
-    }
+async function main() {
+  const ctx = await esbuild.context({
+    entryPoints: ['src/extension.ts', './src/webview/main.mts'],
+    bundle: true,
+    format: 'cjs',
+    minify: production,
+    sourcemap: !production,
+    sourcesContent: false,
+    platform: 'node',
+    outdir: 'dist/',
+    external: ['vscode'],
+    logLevel: 'silent',
+    plugins: [
+      /* add to the end of plugins array */
+      esbuildProblemMatcherPlugin,
+    ],
+  });
+  if (watch) {
+    await ctx.watch();
+  } else {
+    await ctx.rebuild();
+    await ctx.dispose();
   }
-  catch (err) {
-    process.stderr.write(err.stderr)
-    process.exit(1)
-  }
-})()
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});
